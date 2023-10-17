@@ -1,23 +1,6 @@
-export const getData = async (baseUrl, headersCustom = null) => {
-    const headers = headersCustom ?
-      {
-        "Content-Type": "application/json",
-        ...headersCustom
-      }
-      : {"Content-Type": "application/json" };
+type MethodType = 'GET' | 'POST' | 'DELETE';
 
-    const res = await fetch(baseUrl, {
-      method: 'GET',
-      headers,
-    });
-
-  if (!res.ok) {
-    return Promise.reject(res);
-  }
-  return res.json();
-}
-
-export const postData = async (baseUrl, body, headersCustom = null) => {
+export const fetchData = async (baseUrl: string, method: MethodType, body: any = null, headersCustom: any = null) => {
   const headers = headersCustom ?
     {
       "Content-Type": "application/json",
@@ -26,29 +9,9 @@ export const postData = async (baseUrl, body, headersCustom = null) => {
     : {"Content-Type": "application/json" };
 
   const res = await fetch(baseUrl, {
-    method: 'POST',
+    method: method,
     headers,
-    body: JSON.stringify(body)
-  });
-
-  if (!res.ok) {
-    return Promise.reject(res);
-  }
-  return res.json();
-}
-
-export const deleteData = async (baseUrl, body, headersCustom = null) => {
-  const headers = headersCustom ?
-    {
-      "Content-Type": "application/json",
-      ...headersCustom
-    }
-    : {"Content-Type": "application/json" };
-
-  const res = await fetch(baseUrl, {
-    method: 'DELETE',
-    headers,
-    body: JSON.stringify(body)
+    body: body ? JSON.stringify(body) : null
   });
 
   if (!res.ok) {

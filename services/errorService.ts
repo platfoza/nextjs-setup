@@ -1,5 +1,10 @@
-import { postData } from "./fetchService";
+import { fetchData } from "./fetchService";
 
-export const sentError = async (body) => {
-  await postData('api/error', body)
+interface IError {
+  message: string;
+  stack: string | undefined;
+}
+
+export const sentError = async (body: { error: IError }) => {
+  await fetchData('api/error', 'POST', body);
 }

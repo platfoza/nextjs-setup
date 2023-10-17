@@ -1,6 +1,5 @@
 import { errorWrapper } from "../../../services/helpersApi/errorWraper";
-import { notFound } from "next/navigation";
-import { getArticle } from "../../../services/dataServerService";
+import { getArticle } from "../../../services/dataService";
 
 const getDataPage = async () => {
   return await getArticle('123');
@@ -9,9 +8,6 @@ const getDataPage = async () => {
 export default async function ErrorPage() {
   const data = await errorWrapper(getDataPage);
 
-  if(!data) {
-    notFound();
-  }
   return (
     <></>
   )

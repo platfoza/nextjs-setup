@@ -1,6 +1,15 @@
 import { logger } from "../../logger";
 
-export const handleErrorService = (error) => {
+interface IError {
+  statusText?: string;
+  message?: string;
+  status?: number;
+  stack?: string;
+  path?: string;
+  method?: string;
+}
+
+export const handleErrorService = (error: IError) => {
   const dataError = {
     message:  error.message ?? error.statusText,
     status: error.status,

@@ -14,11 +14,13 @@ export const LoginForm = () => {
 
   const submitForm = async () => {
     try{
-      await setCookie({ cookie: {
-        name: 'token',
-        value: `${JSON.stringify(loginForm)}`,
-        options: {secure: true, 'max-age': 3600}
-      }});
+      await setCookie({
+        cookie: {
+          name: 'token',
+          value: `${JSON.stringify(loginForm)}`,
+          options: {secure: true, 'max-age': 3600}
+        }
+      });
       router.push('/profile')
     } catch (err) {
       console.log(err);
@@ -45,7 +47,11 @@ export const LoginForm = () => {
             setLoginForm(prev => ({...prev, password: e.target.value}))
         }
       />
-      <button className="bg-[#000000] text-white" onClick={submitForm}>Login</button>
+      <button
+        className="bg-[#000000] text-white"
+        onClick={submitForm}>
+        Login
+      </button>
     </div>
   )
 }

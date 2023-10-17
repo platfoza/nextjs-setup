@@ -1,17 +1,21 @@
 import './globals.css';
 import { notFound } from "next/navigation";
 import { errorWrapper } from "../services/helpersApi/errorWraper";
-import { getArticles } from "../services/dataServerService";
+import { getArticles } from "../services/dataService";
 
-
-const getDataPage = async () => {
-  const data = await getArticles();
-  // return data.filter((el) => el.id === data.is);
-  return data;
+interface IData {
+  results: {
+    id: string;
+    title: string;
+    summary: string;
+  }[]
+}
+const getDataPage = async (): Promise<IData> => {
+  return await getArticles();
 }
 
 export default async function Home() {
- const data = await errorWrapper(getDataPage);
+ const data: IData = await errorWrapper(getDataPage);
 
   if(!data) {
     notFound();
