@@ -6,7 +6,7 @@ export default function ErrorPage() {
     <>
       <h1 className="font-bold mb-[10px] uppercase">Error page</h1>
       <ErrorComponent/>
-      <Link href="errorPage/serverError">Server Error Page</Link>
+      <a href="errorPage/serverError">Server Error Page</a>
     </>
   )
 }

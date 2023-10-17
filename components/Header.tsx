@@ -22,7 +22,8 @@ export const Header = ({ cookieStore }) => {
 
   return (
     <header className="flex justify-center items-center gap-[30px] h-[70px] bg-[#000000] text-white">
-      <Link href="/">Home</Link>
+      <a href="/">Home A</a>
+      <Link href="/">Home Link</Link>
       <Link href="/pageClient">Client Page</Link>
       <Link href="/errorPage">Error</Link>
       <AuthButton cookieStore={cookie} setCookie={setCookie}/>
