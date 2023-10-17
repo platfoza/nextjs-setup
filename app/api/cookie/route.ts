@@ -1,34 +1,10 @@
-import { cookies } from "next/headers";
+import { serverErrorWrapper } from "../../../services/helpersApi/errorWraper";
+import { deleteCookie, setCookie } from "./index";
 
-export async function POST(request: Request) {
-  const body = await request.json();
-  const { cookie } = body;
-  const { name, value, options } = cookie;
-  const newOptions = {
-    path: '/',
-    ...options
-  };
-
-  if (newOptions.expires instanceof Date) {
-    newOptions.expires = newOptions.expires.toUTCString();
-  }
-
-  let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
-
-  for (let optionKey in newOptions) {
-    updatedCookie += "; " + optionKey;
-    let optionValue = options[optionKey];
-    if (optionValue !== true) {
-      updatedCookie += "=" + optionValue;
-    }
-  }
-  cookies().set(name, value, newOptions);
-  return Response.json({ status: 200 })
+export async function POST(request: Request, response: Response) {
+  return serverErrorWrapper(setCookie, request, response);
 }
 
-export async function DELETE(request: Request) {
-  const body = await request.json();
-  const { cookieName } = body;
-  cookies().delete(cookieName);
-  return Response.json({ status: 200 })
+export async function DELETE(request: Request, response: Response) {
+  return serverErrorWrapper(deleteCookie, request, response);
 }

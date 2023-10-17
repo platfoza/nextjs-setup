@@ -5,7 +5,7 @@ export default function Profile() {
   return (
     <>
       <h1 className="font-bold mb-[10px] uppercase">Profile</h1>
-      <div>{cookieStore.value}</div>
+      {cookieStore && <div>{cookieStore.value}</div>}
     </>
   )
 }

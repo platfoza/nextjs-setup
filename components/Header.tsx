@@ -4,8 +4,13 @@ import { AuthButton } from "./AuthButton";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { getCookieToken } from "../services/cookieService";
+import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
 
-export const Header = ({ cookieStore }) => {
+interface IProps {
+  cookieStore: RequestCookie | undefined
+}
+
+export const Header = ({ cookieStore }: IProps) => {
   const pathname = usePathname()
   const [cookie, setCookie] = useState(cookieStore);
 
@@ -26,6 +31,7 @@ export const Header = ({ cookieStore }) => {
       <Link href="/">Home Link</Link>
       <Link href="/pageClient">Client Page</Link>
       <Link href="/errorPage">Error</Link>
+      <Link href="/formPage">Form Page</Link>
       <AuthButton cookieStore={cookie} setCookie={setCookie}/>
     </header>
   )

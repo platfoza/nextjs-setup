@@ -12,8 +12,10 @@ export const ErrorComponent = () => {
   }, [count])
 
   return (
-    <>
-      <button onClick={() => setCount(1)}>Client Error</button>
-    </>
+    <button
+      className="bg-[#000000] text-white px-[20px] py-[2px] mb-[10px] min-w-[173px]"
+      onClick={() => setCount(1)}>
+      Client Error
+    </button>
   )
 }
